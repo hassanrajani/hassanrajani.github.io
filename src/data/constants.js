@@ -173,8 +173,8 @@ export const experiences = [
     doc: "",
   },
     {
-    id: 0,
-    img: "https://wenawa.com/wp-content/uploads/2023/06/logo.png",
+    id: 1,
+    img: "wenawa.jpeg",
     role: "BACKEND DEVELOPER",
     company: "WENAWA",
     date: "FEB 2024 - Present",
@@ -211,7 +211,7 @@ export const experiences = [
   
   {
     id: 4,
-    img: "https://trafficbuilder.biz/wp-content/uploads/2020/04/Website-header-160x55-1.png",
+    img: "traffic_builder.png",
     role: "Core PHP Developer",
     company: "TRAFFIC BUILDER.BIZ",
     date: "March 2023 - OCT 2023",
@@ -285,6 +285,98 @@ export const education = [
 
 export const projects = [
   {
+    id: 10,
+    title: "Property Management System",
+    description:
+      "A comprehensive property management system with advanced features including Stripe payment integration, invoice generation, blog management, CMS functionality, email handling portal, and user dashboards. Built with React frontend and robust backend architecture for seamless property management operations.",
+    image: "Property_ADMIN_pORTAL.png",
+    tags: [
+      "React",
+      "Stripe Payment",
+      "Invoice System",
+      "Blog Management",
+      "CMS",
+      "Email Portal",
+      "User Dashboard",
+      "MySQL",
+      "PHP",
+      "Laravel"
+    ],
+    category: "web app",
+    github: "#",
+    webapp: "#",
+  },
+  {
+    id: 11,
+    title: "Property Module - Properties Management",
+    description:
+      "Advanced property listing and management module featuring comprehensive property details, image galleries, search functionality, and property categorization. Includes property analytics, tenant management, and maintenance tracking systems.",
+    image: "Property_ADMIN_pORTAL_PROPERTIESMODULE.png",
+    tags: [
+      "Property Management",
+      "React",
+      "MySQL",
+      "Image Gallery",
+      "Search System",
+      "Analytics",
+      "Tenant Management"
+    ],
+    category: "web app",
+    github: "#",
+  },
+  {
+    id: 12,
+    title: "Stripe Payment Integration",
+    description:
+      "Secure payment processing system integrated with Stripe API for handling property transactions, rent payments, and service fees. Features automated invoice generation, payment history tracking, and refund management.",
+    image: "Property_ADMIN_pORTAL_STRIPE.png",
+    tags: [
+      "Stripe API",
+      "Payment Processing",
+      "Invoice Generation",
+      "Transaction History",
+      "Refund System",
+      "Security"
+    ],
+    category: "web app",
+    github: "#",
+  },
+  {
+    id: 13,
+    title: "Content Management System (CMS)",
+    description:
+      "Full-featured CMS with blog management, content creation tools, media library, SEO optimization, and user role management. Includes advanced text editor, content scheduling, and multi-language support.",
+    image: "CMS.png",
+    tags: [
+      "CMS",
+      "Blog Management",
+      "Content Creation",
+      "SEO",
+      "Media Library",
+      "User Roles",
+      "Multi-language"
+    ],
+    category: "web app",
+    github: "#",
+  },
+  {
+    id: 14,
+    title: "Advanced CMS Features",
+    description:
+      "Enhanced CMS functionality with advanced content workflows, automated publishing, content analytics, social media integration, and comprehensive admin dashboard for content management and user engagement tracking.",
+    image: "CMS_FUTHUR.png",
+    tags: [
+      "Advanced CMS",
+      "Content Workflow",
+      "Analytics",
+      "Social Integration",
+      "Admin Dashboard",
+      "User Engagement"
+    ],
+    category: "web app",
+    github: "#",
+  },
+  {
     id: 9,
     title: "Welcome to Daily Shop (E-Project)",
     description:
@@ -354,77 +446,142 @@ export const projects = [
     id: 5,
     title: "GIP",
     description:
-    "Welcome to GIP, your premier destination for literary enthusiasts seeking to delve into the captivating world of books. Immerse yourself in a digital realm where imagination knows no bounds and the written word comes to life.",
+      "Welcome to GIP, your premier destination for literary enthusiasts seeking to delve into the captivating world of books. Immerse yourself in a digital realm where imagination knows no bounds and the written word comes to life.",
     image:
       "https://raw.githubusercontent.com/hassan2112d/Images/main/Screenshot%20(15).png",
-    tags: ["Custom PHP",
-    "Core PHP",
-    "HTML",
-    "mysqli",
-    "CSS",
-    "Bootstrap",
-    "Slick Slider",],
-    category: "web app",
-    github: "https://publications.greenislandtrust.org/",
-    },
-    {
-      id: 5,
-      title: "Todo Tasks",
-      description:
-        " A Todo Web App made with Tkinter containing 4 Tasks. It has a sidebar where users can see all the tasks and can create a new task. It has a calendar where users can see all the tasks on a particular date. It has a search bar where users can search for a particular task.",
-      image:
-        "https://raw.githubusercontent.com/hassan2112d/Images/main/Screenshot%20(12).png",
-      tags: [
-      "PYTHON",
-      "Tkinter",
-      "GUI",
-      ],
-      category: "web app",
-      github: "https://github.com/hassan2112d/CODSOFT.git",
-      },
-    {
-    id: 5,
-    title: "Yummy Food Court",
-    description:
-    "At Yummy Food Center, we're committed to delivering exceptional service and culinary excellence. Leveraging the power of Firebase, we ensure secure transactions, timely delivery, and personalized customer support, so you can enjoy your meal with peace of mind.",
-    image:
-      "https://raw.githubusercontent.com/hassan2112d/Images/main/Screenshot%20(13).png",
-    tags: ["TS",
-    "Boostrap",
-    "HTML",
-    "Angular TS",
-    "firebase",
-    
+    tags: [
+      "Custom PHP",
+      "Core PHP",
+      "HTML",
+      "mysqli",
+      "CSS",
+      "Bootstrap",
+      "Slick Slider"
     ],
     category: "web app",
-    },
-    {
-      id: 5,
-      title: "Sailor ",
-      description:
-      "Join us on this voyage of innovation and discovery with Sailor. Whether you're charting new territories in the digital landscape or navigating the challenges of modern business, let Sailor be your compass as you set sail towards success.",
-      image:
-        "https://raw.githubusercontent.com/hassan2112d/Images/main/Screenshot%202024-04-02%20171710.png",
-      tags: ["Asp.net",
-      "Backend",
-      ".net",
+    github: "https://publications.greenislandtrust.org/",
+  },
+  {
+    id: 6,
+    title: "Todo Tasks",
+    description:
+      "A Todo Web App made with Tkinter containing 4 Tasks. It has a sidebar where users can see all the tasks and can create a new task. It has a calendar where users can see all the tasks on a particular date. It has a search bar where users can search for a particular task.",
+    image:
+      "https://raw.githubusercontent.com/hassan2112d/Images/main/Screenshot%20(12).png",
+    tags: [
+      "PYTHON",
+      "Tkinter",
+      "GUI"
+    ],
+    category: "desktop app",
+    github: "https://github.com/hassan2112d/CODSOFT.git",
+  },
+  {
+    id: 7,
+    title: "Yummy Food Court",
+    description:
+      "At Yummy Food Center, we're committed to delivering exceptional service and culinary excellence. Leveraging the power of Firebase, we ensure secure transactions, timely delivery, and personalized customer support, so you can enjoy your meal with peace of mind.",
+    image:
+      "https://raw.githubusercontent.com/hassan2112d/Images/main/Screenshot%20(13).png",
+    tags: [
+      "TypeScript",
       "Bootstrap",
-      "sqlserver",
-      
-      ],
-      category: "web app",
-      },
+      "HTML",
+      "Angular",
+      "Firebase"
+    ],
+    category: "web app",
+    github: "#",
+  },
+  {
+    id: 8,
+    title: "Sailor",
+    description:
+      "Join us on this voyage of innovation and discovery with Sailor. Whether you're charting new territories in the digital landscape or navigating the challenges of modern business, let Sailor be your compass as you set sail towards success.",
+    image:
+      "https://raw.githubusercontent.com/hassan2112d/Images/main/Screenshot%202024-04-02%20171710.png",
+    tags: [
+      "ASP.NET",
+      "Backend",
+      ".NET",
+      "Bootstrap",
+      "SQL Server"
+    ],
+    category: "web app",
+    github: "#",
+  },
    
   
   {
-    id: 7,
+    id: 16,
+    title: "Inventory Management System",
+    description:
+      "A comprehensive inventory management system designed to streamline stock tracking, supplier management, and order processing. Features real-time inventory updates, low stock alerts, barcode scanning, automated reorder points, and detailed reporting dashboard for efficient warehouse operations.",
+    image:
+      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=600&fit=crop&crop=center",
+    tags: [
+      "Inventory Management",
+      "Stock Tracking",
+      "Barcode Scanner",
+      "React",
+      "Node.js",
+      "MySQL",
+      "Dashboard",
+      "Reports"
+    ],
+    category: "web app",
+    github: "#",
+  },
+  {
+    id: 17,
+    title: "Hospital Management System",
+    description:
+      "Complete hospital management solution with patient registration, appointment scheduling, doctor management, medical records, billing system, and pharmacy integration. Includes patient portal, staff dashboard, and comprehensive reporting for healthcare administration.",
+    image:
+      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop&crop=center",
+    tags: [
+      "Healthcare",
+      "Patient Management",
+      "Appointment System",
+      "Medical Records",
+      "Billing",
+      "PHP",
+      "Laravel",
+      "MySQL"
+    ],
+    category: "web app",
+    github: "#",
+  },
+  {
+    id: 18,
+    title: "School Management System",
+    description:
+      "Integrated school management platform featuring student enrollment, attendance tracking, grade management, fee collection, timetable scheduling, and parent-teacher communication portal. Includes student portal, teacher dashboard, and administrative reporting.",
+    image:
+      "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&h=600&fit=crop&crop=center",
+    tags: [
+      "Education",
+      "Student Management",
+      "Attendance System",
+      "Grade Management",
+      "Fee Collection",
+      "React",
+      "Express.js",
+      "MongoDB"
+    ],
+    category: "web app",
+    github: "#",
+  },
+  {
+    id: 15,
     title: "QuizLab",
     description:
       "A android quiz app made with Java and Firebase. It has a login page where users can log in with their Google account. It has a sidebar where users can see all the quiz categories and can create a new quiz. It has a leaderboard where users can see the top 10 scorers. It has a search bar where users can search for a particular quiz.",
     image:
-      "",
+      "https://images.unsplash.com/photo-1606868306217-dbf5046868d2?w=800&h=600&fit=crop&crop=center",
     tags: ["Java", "Android Studio", "Firebase", "Google Auth"],
     category: "android app",
+    github: "#",
   },
   
 ];

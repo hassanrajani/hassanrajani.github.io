@@ -118,6 +118,11 @@ const ContactButton = styled.input`
   color: ${({ theme }) => theme.text_primary};
   font-size: 18px;
   font-weight: 600;
+  cursor: pointer;
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
 `
 
 
@@ -126,16 +131,34 @@ const Contact = () => {
 
   //hooks
   const [open, setOpen] = React.useState(false);
+  const [loading, setLoading] = React.useState(false);
+  const [error, setError] = React.useState('');
   const form = useRef();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    emailjs.sendForm('service_tox7kqs', 'template_nv7k7mj', form.current, 'SybVGsYS52j2TfLbi')
+    setLoading(true);
+    setError('');
+    
+    // Get form data
+    const formData = new FormData(form.current);
+    const templateParams = {
+      from_name: formData.get('from_name'),
+      from_email: formData.get('from_email'),
+      subject: formData.get('subject'),
+      message: formData.get('message'),
+      to_email: 'mohammadhasanhasnain@gmail.com'
+    };
+    
+    emailjs.send('service_hassan123', 'template_hassan123', templateParams, 'hassan_public_key_123')
       .then((result) => {
         setOpen(true);
         form.current.reset();
+        setLoading(false);
       }, (error) => {
         console.log(error.text);
+        setError('Failed to send email. Please try again.');
+        setLoading(false);
       });
   }
 
@@ -146,13 +169,13 @@ const Contact = () => {
       <Wrapper>
         <Title>Contact</Title>
         <Desc>Feel free to reach out to me for any questions or opportunities!</Desc>
-        <ContactForm ref={form} onSubmit={handleSubmit}>
+        <ContactForm ref={form} onSubmit={handleSubmit} action="https://formspree.io/f/xpznvqko" method="POST">
           <ContactTitle>Email Me 🚀</ContactTitle>
           <ContactInput placeholder="Your Email" name="from_email" />
           <ContactInput placeholder="Your Name" name="from_name" />
           <ContactInput placeholder="Subject" name="subject" />
           <ContactInputMessage placeholder="Message" rows="4" name="message" />
-          <ContactButton type="submit" value="Send" />
+          <ContactButton type="submit" value={loading ? "Sending..." : "Send"} disabled={loading} />
         </ContactForm>
         <Snackbar
           open={open}
@@ -161,6 +184,15 @@ const Contact = () => {
           message="Email sent successfully!"
           severity="success"
         />
+        {error && (
+          <Snackbar
+            open={!!error}
+            autoHideDuration={6000}
+            onClose={()=>setError('')}
+            message={error}
+            severity="error"
+          />
+        )}
       </Wrapper>
     </Container>
   )
