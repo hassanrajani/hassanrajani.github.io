@@ -1,40 +1,64 @@
 import React from 'react'
 import styled from 'styled-components'
+import { motion } from 'framer-motion'
 
 
 const Button = styled.button`
     display: none;
     width: 100%;
     padding: 10px;
-    background-color: ${({ theme }) => theme.white};
-    color: ${({ theme }) => theme.text_black};
+    background-color: ${({ theme }) => theme.primary};
+    color: white;
     font-size: 14px;
     font-weight: 700;
     border: none;
     border-radius: 10px;
     cursor: pointer;
-    transition: all 0.8s ease-in-out;
+    transition: all 0.3s ease;
+    
+    &:hover {
+        background-color: ${({ theme }) => theme.button};
+        transform: translateY(-1px);
+    }
 `
 const Card = styled.div`
     width: 330px;
     height: 490px;
     background-color: ${({ theme }) => theme.card};
     cursor: pointer;
-    border-radius: 10px;
-    box-shadow: 0 0 12px 4px rgba(0,0,0,0.4);
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
     overflow: hidden;
     padding: 26px 20px;
     display: flex;
     flex-direction: column;
     gap: 14px;
-    transition: all 0.5s ease-in-out;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(133, 76, 230, 0.2);
+    
     &:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 0 50px 4px rgba(0,0,0,0.6);
-        filter: brightness(1.1);
+        transform: translateY(-8px);
+        box-shadow: 0 8px 30px rgba(133, 76, 230, 0.3);
+        border-color: ${({ theme }) => theme.primary};
     }
+    
     &:hover ${Button} {
         display: block;
+    }
+    
+    @media (max-width: 768px) {
+        width: 100%;
+        max-width: 350px;
+        height: auto;
+        min-height: 420px;
+        padding: 20px 16px;
+    }
+    
+    @media (max-width: 480px) {
+        max-width: 300px;
+        min-height: 380px;
+        padding: 16px 12px;
+        gap: 10px;
     }
 `
 
@@ -42,8 +66,14 @@ const Image = styled.img`
     width: 100%;
     height: 180px;
     background-color: ${({ theme }) => theme.white};
-    border-radius: 10px;
-    box-shadow: 0 0 16px 2px rgba(0,0,0,0.3);
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    object-fit: cover;
+    transition: transform 0.3s ease;
+    
+    @media (max-width: 480px) {
+        height: 150px;
+    }
 `
 
 const Tags = styled.div`
@@ -60,8 +90,13 @@ const Tag = styled.span`
     font-weight: 400;
     color: ${({ theme }) => theme.primary};
     background-color: ${({ theme }) => theme.primary + 15};
-    padding: 2px 8px;
+    padding: 4px 8px;
     border-radius: 10px;
+    
+    @media (max-width: 480px) {
+        font-size: 10px;
+        padding: 3px 6px;
+    }
 `
 
 const Details = styled.div`
@@ -80,8 +115,17 @@ const Title = styled.div`
     max-width: 100%;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
-    overflow: hidden;
     text-overflow: ellipsis;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    transition: color 0.3s ease;
+    
+    &:hover {
+        color: ${({ theme }) => theme.primary};
+    }
+    
+    @media (max-width: 480px) {
+        font-size: 18px;
+    }
 `
 
 const Date = styled.div`
@@ -105,6 +149,12 @@ const Description = styled.div`
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     text-overflow: ellipsis;
+    font-size: 14px;
+    
+    @media (max-width: 480px) {
+        font-size: 13px;
+        -webkit-line-clamp: 2;
+    }
 `
 
 const Members = styled.div`
@@ -128,7 +178,7 @@ const ProjectCards = ({project,setOpenModal}) => {
             <Image src={project.image}/>
             <Tags>
                 {project.tags?.map((tag, index) => (
-                <Tag>{tag}</Tag>
+                    <Tag key={index}>{tag}</Tag>
                 ))}
             </Tags>
             <Details>
@@ -137,11 +187,11 @@ const ProjectCards = ({project,setOpenModal}) => {
                 <Description>{project.description}</Description>
             </Details>
             <Members>
-                {project.member?.map((member) => (
-                    <Avatar src={member.img}/>
+                {project.member?.map((member, index) => (
+                    <Avatar key={index} src={member.img}/>
                 ))}
             </Members>
-            {/* <Button>View Project</Button> */}
+            <Button>View Project</Button>
         </Card>
     )
 }

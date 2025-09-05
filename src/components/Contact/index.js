@@ -150,13 +150,18 @@ const Contact = () => {
       to_email: 'mohammadhasanhasnain@gmail.com'
     };
     
-    emailjs.send('service_hassan123', 'template_hassan123', templateParams, 'hassan_public_key_123')
+    emailjs.send(
+      process.env.REACT_APP_EMAILJS_SERVICE_ID || 'service_j4rjkf5',
+      process.env.REACT_APP_EMAILJS_TEMPLATE_ID || 'template_4u65g8b',
+      templateParams,
+      process.env.REACT_APP_EMAILJS_PUBLIC_KEY || 'N99mg3AOUZM-9V-zJ'
+    )
       .then((result) => {
         setOpen(true);
         form.current.reset();
         setLoading(false);
       }, (error) => {
-        console.log(error.text);
+        console.error('Email send failed:', error.status);
         setError('Failed to send email. Please try again.');
         setLoading(false);
       });

@@ -20,10 +20,14 @@ export const Wrapper = styled.div`
     flex-direction: column;
     width: 100%;
     max-width: 1350px;
-    padding: 10px 0px 100px 0;
+    padding: 10px 20px 100px 20px;
     gap: 12px;
     @media (max-width: 960px) {
         flex-direction: column;
+        padding: 10px 16px 80px 16px;
+    }
+    @media (max-width: 480px) {
+        padding: 10px 12px 60px 12px;
     }
 `;
 
@@ -37,6 +41,10 @@ margin-top: 20px;
       margin-top: 12px;
       font-size: 32px;
   }
+  @media (max-width: 480px) {
+      font-size: 28px;
+      margin-top: 8px;
+  }
 `;
 
 export const Desc = styled.div`
@@ -44,9 +52,15 @@ export const Desc = styled.div`
     text-align: center;
     max-width: 600px;
     color: ${({ theme }) => theme.text_secondary};
+    padding: 0 20px;
     @media (max-width: 768px) {
         margin-top: 12px;
         font-size: 16px;
+        padding: 0 16px;
+    }
+    @media (max-width: 480px) {
+        font-size: 14px;
+        padding: 0 12px;
     }
 `;
 
@@ -58,8 +72,16 @@ export const ToggleButtonGroup = styled.div`
     border-radius: 12px;
     font-weight: 500;
     margin: 22px 0px;
+    flex-wrap: wrap;
     @media (max-width: 768px) {
         font-size: 12px;
+        margin: 16px 0px;
+    }
+    @media (max-width: 480px) {
+        font-size: 11px;
+        flex-direction: column;
+        width: 100%;
+        max-width: 280px;
     }
 `
 
@@ -67,6 +89,7 @@ export const ToggleButton = styled.div`
     padding: 8px 18px;
     border-radius: 6px;
     cursor: pointer;
+    text-align: center;
     ${({ active, theme }) =>
         active && `
     background: ${theme.primary + 20};
@@ -76,8 +99,19 @@ export const ToggleButton = styled.div`
         background: ${({ theme }) => theme.primary + 8};
     }
     @media (max-width: 768px) {
-        padding: 6px 8px;
+        padding: 6px 12px;
         border-radius: 4px;
+    }
+    @media (max-width: 480px) {
+        padding: 8px 16px;
+        flex: 1;
+        border-radius: 0;
+        &:first-child {
+            border-radius: 10px 10px 0 0;
+        }
+        &:last-child {
+            border-radius: 0 0 10px 10px;
+        }
     }
 `
 export const Divider = styled.div`
@@ -92,14 +126,16 @@ export const CardContainer = styled.div`
     align-items: center;
     gap: 28px;
     flex-wrap: wrap;
-    // display: grid;
-    // grid-template-columns: repeat(3, 1fr);
-    // grid-gap: 32px;
-    // grid-auto-rows: minmax(100px, auto);
-    // @media (max-width: 960px) {
-    //     grid-template-columns: repeat(2, 1fr);
-    // }
-    // @media (max-width: 640px) {
-    //     grid-template-columns: repeat(1, 1fr);
-    // }
+    width: 100%;
+    
+    @media (max-width: 768px) {
+        gap: 20px;
+        justify-content: center;
+    }
+    
+    @media (max-width: 480px) {
+        gap: 16px;
+        flex-direction: column;
+        align-items: center;
+    }
 `;

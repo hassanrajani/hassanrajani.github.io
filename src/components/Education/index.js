@@ -1,6 +1,7 @@
 
 import React from 'react'
 import styled from 'styled-components'
+import { motion } from 'framer-motion'
 import Timeline from '@mui/lab/Timeline';
 import TimelineItem from '@mui/lab/TimelineItem';
 import TimelineSeparator from '@mui/lab/TimelineSeparator';
@@ -87,16 +88,35 @@ const index = () => {
                 </Desc>
                 <TimelineSection>
                     <Timeline>
-                        {education.map((education,index) => (
-                            <TimelineItem >
-                                <TimelineContent sx={{ py: '12px', px: 2 }}>
-                                    <EducationCard education={education}/>
-                                </TimelineContent>
-                                <TimelineSeparator>
-                                    <TimelineDot variant="outlined" color="secondary" />
-                                    {index !== experiences.length  && <TimelineConnector style={{ background: '#854CE6' }} />}
-                                </TimelineSeparator>
-                            </TimelineItem>
+                        {education.map((educationItem,index) => (
+                            <motion.div
+                                key={index}
+                                initial={{ opacity: 0, x: index % 2 === 0 ? 50 : -50 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                transition={{ 
+                                    duration: 0.6, 
+                                    delay: index * 0.2,
+                                    ease: "easeOut"
+                                }}
+                                viewport={{ once: true }}
+                            >
+                                <TimelineItem>
+                                    <TimelineContent sx={{ py: '12px', px: 2 }}>
+                                        <EducationCard education={educationItem}/>
+                                    </TimelineContent>
+                                    <TimelineSeparator>
+                                        <motion.div
+                                            initial={{ scale: 0 }}
+                                            whileInView={{ scale: 1 }}
+                                            transition={{ duration: 0.4, delay: index * 0.2 + 0.3 }}
+                                            viewport={{ once: true }}
+                                        >
+                                            <TimelineDot variant="outlined" color="secondary" />
+                                        </motion.div>
+                                        {index !== education.length - 1 && <TimelineConnector style={{ background: '#854CE6' }} />}
+                                    </TimelineSeparator>
+                                </TimelineItem>
+                            </motion.div>
                         ))}
                     </Timeline>
 

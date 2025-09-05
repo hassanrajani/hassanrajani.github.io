@@ -10,10 +10,11 @@ export const Nav = styled.div`
     justify-content: center;
     font-size: 1rem;
     position: sticky;
-    top: 0;
-    z-index: 10;
+    top: 4px;
+    z-index: 1000;
     @media (max-width: 960px) {
-        trastion: 0.8s all ease;
+        transition: 0.8s all ease;
+        position: relative;
     }
 `;
 export const NavbarContainer = styled.div`
@@ -25,6 +26,15 @@ export const NavbarContainer = styled.div`
   width: 100%;
   padding: 0 24px;
   max-width: 1200px;
+  position: relative;
+  
+  @media (max-width: 768px) {
+    padding: 0 16px;
+  }
+  
+  @media (max-width: 480px) {
+    padding: 0 12px;
+  }
 `;
 
 export const NavLogo = styled(LinkR)`
@@ -42,6 +52,10 @@ export const Span = styled.div`
     padding: 0 4px;
     font-weight: bold;
     font-size: 18px;
+    
+    @media (max-width: 480px) {
+        font-size: 16px;
+    }
 `;
 export const NavItems = styled.ul`
     width: 100%;
@@ -93,6 +107,11 @@ export const GitHubButton = styled.a`
     }
     @media screen and (max-width: 768px) { 
     font-size: 14px;
+    padding: 0 16px;
+    }
+    @media screen and (max-width: 480px) { 
+    font-size: 12px;
+    padding: 0 12px;
     }
 `;
 
@@ -113,34 +132,36 @@ export const MobileIcon = styled.div`
   display: none;
   @media screen and (max-width: 768px) {
     display: block;
-    position: absolute;
-    top: 0;
-    right: 0;
-    transform: translate(-100%, 60%);
     font-size: 1.5rem;
     cursor: pointer;
     color: ${({ theme }) => theme.text_primary};
+    z-index: 1001;
+  }
+  
+  @media screen and (max-width: 480px) {
+    font-size: 1.3rem;
   }
 `
 
 export const MobileMenu = styled.div`
-    display: flex;
+    display: ${({ isOpen }) => (isOpen ? 'flex' : 'none')};
     flex-direction: column;
-    justify-content: center;
-    gap: 16px;
+    align-items: center;
+    gap: 20px;
     position: absolute;
-    top: 80px;
-    right: 0;
+    top: 100%;
+    left: 0;
     width: 100%;
-    padding: 12px 40px 24px 40px;
-    background: ${({ theme }) => theme.card_light+99};
-    transition: all 0.6s ease-in-out;
-    transform: ${({ isOpen }) => (isOpen ? 'translateY(0)' : 'translateY(-100%)')};
+    padding: 30px 20px;
+    background: ${({ theme }) => theme.card_light};
     border-radius: 0 0 20px 20px;
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
-    opacity: ${({ isOpen }) => (isOpen ? '100%' : '0')};
-    z-index: ${({ isOpen }) => (isOpen ? '1000' : '-1000')};
-
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    
+    @media (max-width: 480px) {
+        padding: 20px 16px;
+        gap: 16px;
+    }
 `
 
 export const MobileMenuItems = styled.ul`
@@ -193,15 +214,24 @@ export const MobileMenuButton = styled.a`
 export  const MobileLink = styled.a`
   color: ${({ theme }) => theme.text_primary};
   font-weight: 500;
+  font-size: 18px;
   cursor: pointer;
   transition: all 0.2s ease-in-out;
   text-decoration: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  
   :hover {
     color: ${({ theme }) => theme.primary};
+    background: ${({ theme }) => theme.primary + '20'};
   }
 
   &.active {
     border-bottom: 2px solid ${({ theme }) => theme.primary};
+  }
+  
+  @media (max-width: 480px) {
+    font-size: 16px;
   }
 `;
 
