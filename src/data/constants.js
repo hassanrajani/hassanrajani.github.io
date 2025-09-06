@@ -473,7 +473,7 @@ export const projects = [
       "Tkinter",
       "GUI"
     ],
-    category: "desktop app",
+    category: "web app",
     github: "https://github.com/hassan2112d/CODSOFT.git",
   },
   {

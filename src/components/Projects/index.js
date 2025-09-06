@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState, useEffect, useMemo } from 'react'
+import { useState, useEffect } from 'react'
 import { Container, Wrapper, Title, Desc, CardContainer, ToggleButtonGroup, ToggleButton, Divider } from './ProjectsStyle'
 import ProjectCard from '../Cards/ProjectCards'
 import { projects } from '../../data/constants'
@@ -10,7 +10,6 @@ import 'swiper/css'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
 import styled from 'styled-components'
-import { staggerContainer, staggerItem } from '../../utils/animations'
 
 
 const SliderContainer = styled.div`
@@ -53,34 +52,13 @@ const Projects = ({openModal,setOpenModal}) => {
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
   
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        delayChildren: 0.3,
-        staggerChildren: 0.1
-      }
-    }
-  };
 
-  const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        duration: 0.6,
-        ease: "easeOut"
-      }
-    }
-  };
 
-  const filteredProjects = useMemo(() => {
-    return toggle === 'all' 
-      ? projects 
-      : projects.filter((item) => item.category === toggle);
-  }, [toggle]);
+  
+
+  const filteredProjects = toggle === 'all' 
+    ? projects 
+    : projects.filter((item) => item.category === toggle);
 
   return (
     <Container id="projects">
@@ -149,71 +127,76 @@ const Projects = ({openModal,setOpenModal}) => {
           </ToggleButtonGroup>
         </motion.div>
         
-        {!isMobile ? (
-          <motion.div
-            variants={staggerContainer}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-          >
-            <CardContainer>
-              {filteredProjects.map((project, index) => (
-                <motion.div
-                  key={project.id || index}
-                  variants={staggerItem}
-                  whileHover={{ 
-                    y: -12,
-                    scale: 1.02,
-                    transition: { duration: 0.3, ease: "easeOut" }
-                  }}
-                  className="card-hover"
-                >
-                  <ProjectCard 
-                    project={project} 
-                    openModal={openModal} 
-                    setOpenModal={setOpenModal}
-                  />
-                </motion.div>
-              ))}
-            </CardContainer>
-          </motion.div>
-        ) : (
-          <SliderContainer>
-            <Swiper
-              modules={[Navigation, Pagination, Autoplay]}
-              spaceBetween={20}
-              slidesPerView={1}
-              navigation
-              pagination={{ clickable: true }}
-              autoplay={{
-                delay: 3000,
-                disableOnInteraction: false,
-              }}
-              breakpoints={{
-                480: {
-                  slidesPerView: 1.2,
-                  spaceBetween: 16,
-                },
-                640: {
-                  slidesPerView: 1.5,
-                  spaceBetween: 20,
-                },
-              }}
+        <AnimatePresence mode="wait">
+          {!isMobile ? (
+            <motion.div
+              key={toggle}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.3 }}
             >
-              {filteredProjects.map((project, index) => (
-                <SwiperSlide key={project.id || index}>
-                  <div style={{ display: 'flex', justifyContent: 'center' }}>
+              <CardContainer>
+                {filteredProjects.map((project, index) => (
+                  <motion.div
+                    key={project.id}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.3, delay: index * 0.1 }}
+                    whileHover={{ 
+                      y: -12,
+                      scale: 1.02,
+                      transition: { duration: 0.3, ease: "easeOut" }
+                    }}
+                    className="card-hover"
+                  >
                     <ProjectCard 
                       project={project} 
                       openModal={openModal} 
                       setOpenModal={setOpenModal}
                     />
-                  </div>
-                </SwiperSlide>
-              ))}
-            </Swiper>
-          </SliderContainer>
-        )}
+                  </motion.div>
+                ))}
+              </CardContainer>
+            </motion.div>
+          ) : (
+            <SliderContainer key={toggle}>
+              <Swiper
+                modules={[Navigation, Pagination, Autoplay]}
+                spaceBetween={20}
+                slidesPerView={1}
+                navigation
+                pagination={{ clickable: true }}
+                autoplay={{
+                  delay: 3000,
+                  disableOnInteraction: false,
+                }}
+                breakpoints={{
+                  480: {
+                    slidesPerView: 1.2,
+                    spaceBetween: 16,
+                  },
+                  640: {
+                    slidesPerView: 1.5,
+                    spaceBetween: 20,
+                  },
+                }}
+              >
+                {filteredProjects.map((project, index) => (
+                  <SwiperSlide key={project.id}>
+                    <div style={{ display: 'flex', justifyContent: 'center' }}>
+                      <ProjectCard 
+                        project={project} 
+                        openModal={openModal} 
+                        setOpenModal={setOpenModal}
+                      />
+                    </div>
+                  </SwiperSlide>
+                ))}
+              </Swiper>
+            </SliderContainer>
+          )}
+        </AnimatePresence>
       </Wrapper>
     </Container>
   )
