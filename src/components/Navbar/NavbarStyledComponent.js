@@ -115,6 +115,42 @@ export const GitHubButton = styled.a`
     }
 `;
 
+export const ThemeToggle = styled.button`
+  background: ${({ theme }) => theme.primary};
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 16px;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 15px ${({ theme }) => theme.primary}40;
+  }
+  
+  svg {
+    width: 20px;
+    height: 20px;
+    fill: white;
+  }
+  
+  @media screen and (max-width: 768px) {
+    width: 35px;
+    height: 35px;
+    margin-right: 12px;
+    
+    svg {
+      width: 18px;
+      height: 18px;
+    }
+  }
+`;
+
 export const ButtonContainer = styled.div`
   width: 80%;  
   height: 100%;
@@ -122,6 +158,7 @@ export const ButtonContainer = styled.div`
   justify-content: end;
   align-items: center;
   padding: 0 6px;
+  gap: 12px;
   @media screen and (max-width: 768px) {
     display: none;
   }

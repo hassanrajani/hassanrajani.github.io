@@ -1,13 +1,13 @@
 import React from 'react'
-import { Nav, NavLink, NavbarContainer, Span, NavLogo, NavItems, GitHubButton, ButtonContainer, MobileIcon, MobileMenu, MobileNavLogo, MobileLink } from './NavbarStyledComponent'
+import { Nav, NavLink, NavbarContainer, Span, NavLogo, NavItems, GitHubButton, ButtonContainer, MobileIcon, MobileMenu, MobileLink, ThemeToggle } from './NavbarStyledComponent'
 import { DiCssdeck } from 'react-icons/di';
 import { FaBars } from 'react-icons/fa';
+import { BsSun, BsMoon } from 'react-icons/bs';
 import { Bio } from '../../data/constants';
-import { Close, CloseRounded } from '@mui/icons-material';
 import { useTheme } from 'styled-components';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 
-const Navbar = () => {
+const Navbar = ({ darkMode, toggleTheme }) => {
   const [isOpen, setIsOpen] = React.useState(false);
   const [scrolled, setScrolled] = React.useState(false);
   const theme = useTheme();
@@ -45,23 +45,7 @@ const Navbar = () => {
     }
   };
 
-  const mobileMenuVariants = {
-    hidden: {
-      opacity: 0,
-      x: "100%",
-      transition: {
-        duration: 0.3
-      }
-    },
-    visible: {
-      opacity: 1,
-      x: 0,
-      transition: {
-        duration: 0.3,
-        staggerChildren: 0.1
-      }
-    }
-  };
+
 
   return (
     <motion.div
@@ -116,6 +100,14 @@ const Navbar = () => {
           
           <ButtonContainer>
             <motion.div
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+            >
+              <ThemeToggle onClick={toggleTheme}>
+                {darkMode ? <BsSun /> : <BsMoon />}
+              </ThemeToggle>
+            </motion.div>
+            <motion.div
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -130,6 +122,9 @@ const Navbar = () => {
           </ButtonContainer>
           
           <MobileMenu isOpen={isOpen}>
+            <ThemeToggle onClick={toggleTheme} style={{ marginBottom: '10px' }}>
+              {darkMode ? <BsSun /> : <BsMoon />}
+            </ThemeToggle>
             <MobileLink href="#about" onClick={() => setIsOpen(false)}>About</MobileLink>
             <MobileLink href="#skills" onClick={() => setIsOpen(false)}>Skills</MobileLink>
             <MobileLink href="#experience" onClick={() => setIsOpen(false)}>Experience</MobileLink>

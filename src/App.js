@@ -50,10 +50,19 @@ const LoadingScreen = styled(motion.div)`
   font-weight: bold;
 `
 function App() {
-  const [darkMode] = useState(true);
+  const [darkMode, setDarkMode] = useState(() => {
+    const saved = localStorage.getItem('theme');
+    return saved ? saved === 'dark' : true;
+  });
   const [openModal, setOpenModal] = useState({ state: false, project: null });
   const [loading, setLoading] = useState(true);
   const [mouseEffects, setMouseEffects] = useState(null);
+
+  const toggleTheme = () => {
+    const newTheme = !darkMode;
+    setDarkMode(newTheme);
+    localStorage.setItem('theme', newTheme ? 'dark' : 'light');
+  };
   
   useEffect(() => {
     AOS.init({
@@ -125,7 +134,7 @@ function App() {
           <ScrollProgressBar />
           <ScrollProgress />
           <ScrollToTop />
-          <Navbar />
+          <Navbar darkMode={darkMode} toggleTheme={toggleTheme} />
           <Body
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
