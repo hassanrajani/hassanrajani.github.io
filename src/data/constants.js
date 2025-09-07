@@ -9,7 +9,7 @@ export const Bio = {
     "I am a motivated and versatile individual, always eager to take on new challenges. With a passion for learning I am dedicated to delivering high-quality results. With a positive attitude and a growth mindset, I am ready to make a meaningful contribution and achieve great things.",
   github: "https://github.com/hassanrajani",
   resume:
-    "https://github.com/hassanrajani/hassanrajani.github.io/M.Hassan_CV.pdf",
+    "https://github.com/hassanrajani/hassanrajani.github.io/blob/main/M.Hassan_Cv.pdf",
   linkedin: "https://linkedin.com/in/hassan-rajani-84bb8722a/",
   insta: "https://www.instagram.com/hassann_.1/",
   facebook: "https://www.facebook.com/profile.php?id=100069025241503",
