@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import { useRef } from 'react';
 import emailjs from '@emailjs/browser';
-import { Snackbar } from '@mui/material';
+import { Snackbar, Alert } from '@mui/material';
 
 const Container = styled.div`
 display: flex;
@@ -125,7 +125,43 @@ const ContactButton = styled.input`
   }
 `
 
+const SuccessMessage = styled.div`
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: #4caf50;
+  color: white;
+  padding: 16px 24px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  z-index: 9999;
+  font-weight: 500;
+  animation: slideIn 0.3s ease-out;
+  
+  @keyframes slideIn {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+  }
+`
 
+const ErrorMessage = styled.div`
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: #f44336;
+  color: white;
+  padding: 16px 24px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  z-index: 9999;
+  font-weight: 500;
+  animation: slideIn 0.3s ease-out;
+  
+  @keyframes slideIn {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+  }
+`
 
 const Contact = () => {
 
@@ -147,13 +183,14 @@ const Contact = () => {
     const message = formData.get('message');
     
     try {
-      // Send notification to admin (you)
+      // Send notification to admin (you) with proper template variables
       const adminParams = {
+        to_name: 'Hassan Rajani',
         from_name: userName,
         from_email: userEmail,
-        subject: `New Contact Form: ${subject}`,
-        message: `Name: ${userName}\nEmail: ${userEmail}\nSubject: ${subject}\n\nMessage:\n${message}`,
-        to_email: 'mohammadhasanhasnain@gmail.com'
+        subject: subject,
+        message: message,
+        reply_to: userEmail
       };
       
       await emailjs.send(
@@ -165,11 +202,12 @@ const Contact = () => {
       
       // Send confirmation to user
       const userParams = {
+        to_name: userName,
         from_name: 'Hassan Rajani',
         from_email: 'mohammadhasanhasnain@gmail.com',
         subject: 'Thank you for contacting me!',
-        message: `Hi ${userName},\n\nThank you for reaching out! I have received your message and will get back to you soon.\n\nBest regards,\nHassan Rajani`,
-        to_email: userEmail
+        message: `Hi ${userName},\n\nThank you for reaching out! I have received your message about "${subject}" and will get back to you soon.\n\nBest regards,\nHassan Rajani`,
+        reply_to: 'mohammadhasanhasnain@gmail.com'
       };
       
       await emailjs.send(
@@ -182,10 +220,17 @@ const Contact = () => {
       setOpen(true);
       form.current.reset();
       setLoading(false);
+      
+      // Auto hide success message
+      setTimeout(() => setOpen(false), 5000);
+      
     } catch (error) {
       console.error('Email send failed:', error);
       setError('Failed to send email. Please try again.');
       setLoading(false);
+      
+      // Auto hide error message
+      setTimeout(() => setError(''), 5000);
     }
   }
 
@@ -204,21 +249,19 @@ const Contact = () => {
           <ContactInputMessage placeholder="Message" rows="4" name="message" required />
           <ContactButton type="submit" value={loading ? "Sending..." : "Send"} disabled={loading} />
         </ContactForm>
-        <Snackbar
-          open={open}
-          autoHideDuration={6000}
-          onClose={()=>setOpen(false)}
-          message="✅ Message sent successfully! You will receive a confirmation email shortly."
-          severity="success"
-        />
+        
+        {/* Success Message */}
+        {open && (
+          <SuccessMessage>
+            ✅ Message sent successfully! You will receive a confirmation email shortly.
+          </SuccessMessage>
+        )}
+        
+        {/* Error Message */}
         {error && (
-          <Snackbar
-            open={!!error}
-            autoHideDuration={6000}
-            onClose={()=>setError('')}
-            message={error}
-            severity="error"
-          />
+          <ErrorMessage>
+            ❌ {error}
+          </ErrorMessage>
         )}
       </Wrapper>
     </Container>
