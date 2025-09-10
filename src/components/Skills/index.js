@@ -32,11 +32,11 @@ padding: 0 20px;
 }
 `
 
-export const Title = styled.div`
+export const Title = styled.h2`
 font-size: 42px;
 text-align: center;
 font-weight: 600;
-margin-top: 20px;
+margin: 20px 0 0 0;
   color: ${({ theme }) => theme.text_primary};
   @media (max-width: 768px) {
 margin-top: 12px;
@@ -105,7 +105,7 @@ const Skill = styled.div`
   }
 `
 
-const SkillTitle = styled.h2`
+const SkillTitle = styled.h3`
   font-size: 28px;
   font-weight: 600;
   color: ${({ theme }) => theme.text_secondary};

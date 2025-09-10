@@ -25,7 +25,7 @@ const FooterWrapper = styled.footer`
   color: ${({ theme }) => theme.text_primary};
 `;
 
-const Logo = styled.h1`
+const Logo = styled.h2`
   font-weight: 600;
   font-size: 20px;
   color: ${({ theme }) => theme.primary};

@@ -143,12 +143,13 @@ export const Img = styled.img`
   }
 `;
 
-export const Title = styled.div`
+export const Title = styled.h1`
   font-weight: 700;
   font-size: 50px;
   color: ${({ theme }) => theme.text_primary};
   line-height: 68px;
   text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+  margin: 0 0 20px 0;
   
   @media (max-width: 960px) {
     text-align: center;

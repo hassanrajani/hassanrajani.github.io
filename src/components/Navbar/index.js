@@ -59,16 +59,14 @@ const Navbar = ({ darkMode, toggleTheme }) => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            <NavLogo to='/'>
-              <a style={{ display: "flex", alignItems: "center", color: "white", marginBottom: '20px', cursor: 'pointer' }}>
-                <motion.div
-                  animate={{ rotate: 360 }}
-                  transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-                >
-                  <DiCssdeck size="3rem" />
-                </motion.div>
-                <Span className="gradient-text">Portfolio</Span>
-              </a>
+            <NavLogo to='/' style={{ display: "flex", alignItems: "center", color: "white", marginBottom: '20px', cursor: 'pointer', textDecoration: 'none' }}>
+              <motion.div
+                animate={{ rotate: 360 }}
+                transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+              >
+                <DiCssdeck size="3rem" />
+              </motion.div>
+              <Span className="gradient-text">Portfolio</Span>
             </NavLogo>
           </motion.div>
           
