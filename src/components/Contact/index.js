@@ -135,36 +135,58 @@ const Contact = () => {
   const [error, setError] = React.useState('');
   const form = useRef();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
     setError('');
     
-    // Get form data
     const formData = new FormData(form.current);
-    const templateParams = {
-      from_name: formData.get('from_name'),
-      from_email: formData.get('from_email'),
-      subject: formData.get('subject'),
-      message: formData.get('message'),
-      to_email: 'mohammadhasanhasnain@gmail.com'
-    };
+    const userEmail = formData.get('from_email');
+    const userName = formData.get('from_name');
+    const subject = formData.get('subject');
+    const message = formData.get('message');
     
-    emailjs.send(
-      process.env.REACT_APP_EMAILJS_SERVICE_ID || 'service_j4rjkf5',
-      process.env.REACT_APP_EMAILJS_TEMPLATE_ID || 'template_4u65g8b',
-      templateParams,
-      process.env.REACT_APP_EMAILJS_PUBLIC_KEY || 'N99mg3AOUZM-9V-zJ'
-    )
-      .then((result) => {
-        setOpen(true);
-        form.current.reset();
-        setLoading(false);
-      }, (error) => {
-        console.error('Email send failed:', error.status);
-        setError('Failed to send email. Please try again.');
-        setLoading(false);
-      });
+    try {
+      // Send notification to admin (you)
+      const adminParams = {
+        from_name: userName,
+        from_email: userEmail,
+        subject: `New Contact Form: ${subject}`,
+        message: `Name: ${userName}\nEmail: ${userEmail}\nSubject: ${subject}\n\nMessage:\n${message}`,
+        to_email: 'mohammadhasanhasnain@gmail.com'
+      };
+      
+      await emailjs.send(
+        process.env.REACT_APP_EMAILJS_SERVICE_ID || 'service_j4rjkf5',
+        process.env.REACT_APP_EMAILJS_TEMPLATE_ID || 'template_4u65g8b',
+        adminParams,
+        process.env.REACT_APP_EMAILJS_PUBLIC_KEY || 'N99mg3AOUZM-9V-zJ'
+      );
+      
+      // Send confirmation to user
+      const userParams = {
+        from_name: 'Hassan Rajani',
+        from_email: 'mohammadhasanhasnain@gmail.com',
+        subject: 'Thank you for contacting me!',
+        message: `Hi ${userName},\n\nThank you for reaching out! I have received your message and will get back to you soon.\n\nBest regards,\nHassan Rajani`,
+        to_email: userEmail
+      };
+      
+      await emailjs.send(
+        process.env.REACT_APP_EMAILJS_SERVICE_ID || 'service_j4rjkf5',
+        process.env.REACT_APP_EMAILJS_TEMPLATE_ID || 'template_4u65g8b',
+        userParams,
+        process.env.REACT_APP_EMAILJS_PUBLIC_KEY || 'N99mg3AOUZM-9V-zJ'
+      );
+      
+      setOpen(true);
+      form.current.reset();
+      setLoading(false);
+    } catch (error) {
+      console.error('Email send failed:', error);
+      setError('Failed to send email. Please try again.');
+      setLoading(false);
+    }
   }
 
 
@@ -174,19 +196,19 @@ const Contact = () => {
       <Wrapper>
         <Title>Contact</Title>
         <Desc>Feel free to reach out to me for any questions or opportunities!</Desc>
-        <ContactForm ref={form} onSubmit={handleSubmit} action="https://formspree.io/f/xpznvqko" method="POST">
+        <ContactForm ref={form} onSubmit={handleSubmit}>
           <ContactTitle>Email Me 🚀</ContactTitle>
-          <ContactInput placeholder="Your Email" name="from_email" />
-          <ContactInput placeholder="Your Name" name="from_name" />
-          <ContactInput placeholder="Subject" name="subject" />
-          <ContactInputMessage placeholder="Message" rows="4" name="message" />
+          <ContactInput placeholder="Your Email" name="from_email" type="email" required />
+          <ContactInput placeholder="Your Name" name="from_name" required />
+          <ContactInput placeholder="Subject" name="subject" required />
+          <ContactInputMessage placeholder="Message" rows="4" name="message" required />
           <ContactButton type="submit" value={loading ? "Sending..." : "Send"} disabled={loading} />
         </ContactForm>
         <Snackbar
           open={open}
           autoHideDuration={6000}
           onClose={()=>setOpen(false)}
-          message="Email sent successfully!"
+          message="✅ Message sent successfully! You will receive a confirmation email shortly."
           severity="success"
         />
         {error && (

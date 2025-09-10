@@ -13,6 +13,7 @@ export const Bio = {
   linkedin: "https://linkedin.com/in/hassan-rajani-84bb8722a/",
   insta: "https://www.instagram.com/hassann_.1/",
   facebook: "https://www.facebook.com/profile.php?id=100069025241503",
+  twitter: "https://x.com/HassanRajaniDev",
 };
 
 export const skills = [

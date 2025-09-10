@@ -29,9 +29,12 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "start:fresh": "npm run clear && react-scripts start",
+    "clear": "rd /s /q node_modules && del package-lock.json && npm install",
     "predeploy": "npm run build",
     "deploy": "gh-pages -b main -d build",
     "build": "react-scripts build",
+    "analyze": "npm run build && npx serve -s build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -39,6 +42,11 @@
     "extends": [
       "react-app",
       "react-app/jest"
+    ]
+  },
+  "babel": {
+    "plugins": [
+      ["@babel/plugin-proposal-private-property-in-object", { "loose": true }]
     ]
   },
   "browserslist": {

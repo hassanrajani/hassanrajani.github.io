@@ -100,7 +100,7 @@ const HeroSection = () => {
                             >
                                 <Img 
                                     src={HeroImg} 
-                                    alt="hero-image" 
+                                    alt="M.Hassan Rajani - Full Stack Developer Profile Picture" 
                                     className="glow-effect"
                                 />
                             </motion.div>
