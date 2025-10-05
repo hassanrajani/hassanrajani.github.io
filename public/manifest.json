@@ -1,25 +1,24 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "name": "Hassan Rajani Portfolio",
+  "short_name": "Hassan Rajani",
+  "description": "Hassan Rajani - Backend Developer at Aun Digital, Karachi Pakistan",
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#854CE6",
+  "background_color": "#0C0E27",
   "icons": [
     {
-      "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
+      "src": "profile_pic.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg"
     },
     {
-      "src": "logo192.png",
-      "type": "image/png",
-      "sizes": "192x192"
-    },
-    {
-      "src": "logo512.png",
-      "type": "image/png",
-      "sizes": "512x512"
+      "src": "profile_pic.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg"
     }
   ],
-  "start_url": ".",
-  "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "categories": ["portfolio", "developer", "backend", "web development"],
+  "lang": "en",
+  "orientation": "portrait-primary"
 }

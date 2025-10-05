@@ -1,16 +1,20 @@
 export const Bio = {
   name: "M.Hassan Rajani",
   roles: [
+    "Backend Developer at Aun Digital",
+    " Web Developer",
+    "Programming Instructor",
     "Full Stack Developer",
-    "Backend Developer",
-    "Programmer",
   ],
   description:
-    "I am a motivated and versatile individual, always eager to take on new challenges. With a passion for learning I am dedicated to delivering high-quality results. With a positive attitude and a growth mindset, I am ready to make a meaningful contribution and achieve great things.",
+    "I'm Hassan, a dynamic 20-year-old immersed in the ever-evolving tech world. As a Backend Developer at Aun Digital and Junior Web Developer, my passion lies in continuous growth and learning. Based in Karachi Division, Sindh, Pakistan, I am dedicated to delivering high-quality results with a positive attitude and growth mindset.",
   github: "https://github.com/hassanrajani",
   resume:
     "https://github.com/hassanrajani/hassanrajani.github.io/blob/main/M.Hassan_Cv.pdf",
   linkedin: "https://linkedin.com/in/hassan-rajani-84bb8722a/",
+  company: "Aun Digital",
+  location: "Karachi Division, Sindh, Pakistan",
+  age: "20",
   insta: "https://www.instagram.com/hassann_.1/",
   facebook: "https://www.facebook.com/profile.php?id=100069025241503",
   twitter: "https://x.com/HassanRajaniDev",
