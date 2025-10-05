@@ -1,7 +1,7 @@
 export const Bio = {
   name: "M.Hassan Rajani",
   roles: [
-    "Backend Developer at Aun Digital",
+    "Backend Developer",
     " Web Developer",
     "Programming Instructor",
     "Full Stack Developer",
